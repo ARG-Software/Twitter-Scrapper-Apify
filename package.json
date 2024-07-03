@@ -1,0 +1,36 @@
+{
+  "name": "allocator-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "prestart": "npm run build",
+    "start": "node dist/index.js",
+    "start-dev": "nodemon --exec ts-node src/index.ts",
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint 'src/**/*.{js,ts}'",
+    "format": "prettier --write 'src/**/*.{js,ts,json}'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apify": "^3.2.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.3.0",
+    "@types/jest": "^29.5.12",
+    "@types/uuid": "^9.0.8",
+    "dotenv": "^16.4.5",
+    "eslint": "^9.3.0",
+    "globals": "^15.3.0",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.0",
+    "prettier": "^3.2.5",
+    "ts-jest": "^29.1.3"
+  }
+}
