@@ -1,10 +1,10 @@
 import { ApifyClient } from "apify-client";
-import { apifyToken } from "./config";
+import { APIFY_TOKEN } from "./index";
 import { formatDate } from "./utils";
 
 export async function startScrapper() {
   console.log("Apify: ", ApifyClient);
-  const apifyClient = new ApifyClient({ token: apifyToken });
+  const apifyClient = new ApifyClient({ token: APIFY_TOKEN });
   console.log(apifyClient.token);
 
   const sinceDate = new Date(1713215337000);
