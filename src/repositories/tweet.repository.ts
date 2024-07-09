@@ -8,19 +8,29 @@ export class TweetRepository implements ITweetRepository {
 
   constructor(orm: MikroORM) {
     this.orm = orm;
-    this.repo = orm.em.getRepository(Tweet);
+    this.repo = this.orm.em.getRepository(Tweet);
   }
   async getTweets(since: Date, until: Date): Promise<Tweet[]> {
-    const tweets = this.repo.find({
-      createdAt: {
-        $gte: since,
-        $lt: until,
-      },
-    });
-    return tweets;
+    try {
+      const tweets = this.repo.find({
+        createdAt: {
+          $gte: since,
+          $lt: until,
+        },
+      });
+      return tweets;
+    } catch (error) {
+      console.error("Error fetching tweets:", error);
+      throw error;
+    }
   }
 
   async saveTweets(tweets: Tweet[]): Promise<void> {
-    await this.repo.insertMany(tweets);
+    try {
+      await this.repo.insertMany(tweets);
+    } catch (error) {
+      console.error("Error saving tweets:", error);
+      throw error;
+    }
   }
 }

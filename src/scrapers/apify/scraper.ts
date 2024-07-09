@@ -13,6 +13,7 @@ export class ApifyScraper implements IScraper {
   }
 
   async scrape(): Promise<Tweet[]> {
+    
     const query = {
       query: "since:2021-01-01 until:2021-12-31",
       limit: 100,
