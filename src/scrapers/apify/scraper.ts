@@ -13,20 +13,19 @@ export class ApifyScraper implements IScraper {
   }
 
   async scrape(): Promise<Tweet[]> {
-    
     const query = {
       query: "since:2021-01-01 until:2021-12-31",
       limit: 100,
       fromCursor: null,
     };
-    const result = await this.actor.process(query);
-    const tweets: Tweet[] = result.map((item) => ({
-      id: item.id,
-      tweetId: item.tweetId,
-      text: item.text,
-      createdAt: new Date(item.createdAt as string),
-    }));
+    const result = await this.actor.process("taskName", query);
+    // const tweets: Tweet[] = result.map((item) => ({
+    //   id: item.id,
+    //   tweetId: item.tweetId,
+    //   text: item.text,
+    //   createdAt: new Date(item.createdAt as string),
+    // }));
 
-    return tweets;
+    return result as any;
   }
 }

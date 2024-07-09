@@ -1,19 +1,19 @@
 import { ApifyClient } from "apify-client";
 import { APIFY_TOKEN } from "./index";
 import { formatDate } from "./utils";
+import { IScraper } from "./interfaces/scrapper/iscrapper";
+import { ApifyScraper } from "./scrapers/apify/scraper";
 
-export async function startScrapper() {
-  console.log("Apify: ", ApifyClient);
+export async function bootstrap() {
   const apifyClient = new ApifyClient({ token: APIFY_TOKEN });
-  console.log(apifyClient.token);
 
   const sinceDate = new Date(1713215337000);
   const sinceFormatted = formatDate(sinceDate);
-  console.log("since:", sinceFormatted);
 
   const untilDate = new Date(1713215757000);
   const untilFormatted = formatDate(untilDate);
-  console.log("until:", sinceFormatted);
+
+  const scrapper: IScraper = new ApifyScraper(APIFY_TOKEN as string);
 
   const input = {
     searchTerms: ["since:" + sinceFormatted, "until:" + untilFormatted],

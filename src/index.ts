@@ -1,12 +1,15 @@
-import { startScrapper } from "./main";
+import { bootstrap } from "./main";
 import dotenv from "dotenv";
-
 dotenv.config();
 
 export const APIFY_TOKEN = process.env.APIFY_TOKEN;
+export const SUPABASE_URL = process.env.SUPABASE_URL;
+export const SUPABASE_KEY = process.env.SUPABASE_KEY;
 
-try {
-  startScrapper();
-} catch (error: any) {
-  console.error("Error scrapper:", error);
-}
+(async () => {
+  try {
+    await bootstrap();
+  } catch (error) {
+    console.error("Error during bootstrap", error);
+  }
+})();

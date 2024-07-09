@@ -1,35 +1,38 @@
-import { EntityRepository, MikroORM } from "@mikro-orm/core";
 import { Tweet } from "../entities/tweet";
 import { ITweetRepository } from "../interfaces/repositories/itweet.repository";
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
 export class TweetRepository implements ITweetRepository {
-  private orm: MikroORM;
-  private repo: EntityRepository<Tweet>;
+  private readonly _supabaseUrl: string;
+  private readonly _supabaseKey: string;
+  private readonly _repo: SupabaseClient;
 
-  constructor(orm: MikroORM) {
-    this.orm = orm;
-    this.repo = this.orm.em.getRepository(Tweet);
+  constructor(supabaseUrl: string, supabaseAnonKey: string) {
+    this._supabaseUrl = supabaseUrl;
+    this._supabaseKey = supabaseAnonKey;
+    try {
+      this._repo = createClient(this._supabaseUrl, this._supabaseKey);
+    } catch (error) {
+      console.error("Error creating Supabase client:", error);
+      throw new Error("Failed to initialize TweetRepository");
+    }
   }
   async getTweets(since: Date, until: Date): Promise<Tweet[]> {
-    try {
-      const tweets = this.repo.find({
-        createdAt: {
-          $gte: since,
-          $lt: until,
-        },
-      });
-      return tweets;
-    } catch (error) {
-      console.error("Error fetching tweets:", error);
+    const { data, error } = await this._repo
+      .from("tweets")
+      .select("*")
+      .gte("created_at", since)
+      .lte("created_at", until);
+    if (error) {
       throw error;
     }
+
+    return data;
   }
 
   async saveTweets(tweets: Tweet[]): Promise<void> {
-    try {
-      await this.repo.insertMany(tweets);
-    } catch (error) {
-      console.error("Error saving tweets:", error);
+    const { error } = await this._repo.from("tweets").insert(tweets);
+    if (error) {
       throw error;
     }
   }
