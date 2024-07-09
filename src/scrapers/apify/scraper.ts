@@ -23,7 +23,7 @@ export class ApifyScraper implements IScraper {
       id: item.id,
       tweetId: item.tweetId,
       text: item.text,
-      createdAt: new Date(item.createdAt),
+      createdAt: new Date(item.createdAt as string),
     }));
 
     return tweets;

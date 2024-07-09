@@ -14,3 +14,4 @@ export class Tweet {
   @Property()
   createdAt = new Date();
 }
+

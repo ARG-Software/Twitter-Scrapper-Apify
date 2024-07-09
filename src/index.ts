@@ -1,3 +1,7 @@
+import { startScrapper } from "./main";
 
-
-startEventListener();
+try {
+  startScrapper();
+} catch (error: any) {
+  console.error("Error scrapper:", error);
+}
