@@ -1,7 +1,7 @@
 import { ApifyClient } from "apify";
-import { IScraper } from "../../interfaces/scrapper/iscrapper";
 import { Tweet } from "../../entities/tweet";
-import { TwScrapeActor } from "./actors/twscrape.actor";
+import { IScraper } from "../../scraper/interfaces/iscrapper";
+import { TwScrapeActor } from "../../scraper/actors/twscrape.actor";
 
 export class ApifyScraper implements IScraper {
   private client: ApifyClient;

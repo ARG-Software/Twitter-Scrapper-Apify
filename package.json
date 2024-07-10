@@ -11,6 +11,9 @@
     "db:start": "supabase start",
     "db:reset": "supabase db reset",
     "db:migrate": "supabase migration up",
+    "migration:generate": "mikro-orm migration:create --config mikro-orm.config.ts",
+    "migration:up": "mikro-orm migration:up --config mikro-orm.config.ts",
+    "migration:down": "mikro-orm migration:down --config mikro-orm.config.ts",
     "build": "tsc",
     "test": "jest",
     "lint": "eslint 'src/**/*.{js,ts}'",
@@ -18,9 +21,13 @@
   },
   "author": "ARG",
   "dependencies": {
+    "@mikro-orm/core": "^6.2.9",
+    "@mikro-orm/migrations": "^6.2.9",
+    "@mikro-orm/postgresql": "^6.2.9",
+    "@supabase/supabase-js": "^2.38.2",
     "apify": "^3.2.3",
-    "uuid": "^9.0.1",
-    "@supabase/supabase-js": "^2.38.2"
+    "pg": "^8.12.0",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.3.0",
