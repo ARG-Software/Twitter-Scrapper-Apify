@@ -1,5 +1,5 @@
 import { Tweet } from "../entities/tweet";
-import { ITweetRepository } from "../interfaces/repositories/itweet.repository";
+import { ITweetRepository } from "./interfaces/itweet.repository";
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
 export class TweetRepository implements ITweetRepository {
