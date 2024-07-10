@@ -21,9 +21,6 @@
   },
   "author": "ARG",
   "dependencies": {
-    "@mikro-orm/core": "^6.2.9",
-    "@mikro-orm/migrations": "^6.2.9",
-    "@mikro-orm/postgresql": "^6.2.9",
     "@supabase/supabase-js": "^2.38.2",
     "apify": "^3.2.3",
     "pg": "^8.12.0",
@@ -31,6 +28,9 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.3.0",
+    "@mikro-orm/core": "^6.2.9",
+    "@mikro-orm/migrations": "^6.2.9",
+    "@mikro-orm/postgresql": "^6.2.9",
     "@types/jest": "^29.5.12",
     "@types/uuid": "^9.0.8",
     "dotenv": "^16.4.5",
