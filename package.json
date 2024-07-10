@@ -18,9 +18,9 @@
   },
   "author": "ARG",
   "dependencies": {
-    "@supabase/supabase-js": "^2.44.3",
     "apify": "^3.2.3",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "@supabase/supabase-js": "^2.38.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.3.0",

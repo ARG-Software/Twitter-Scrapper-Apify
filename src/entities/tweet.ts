@@ -1,9 +1,16 @@
+import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
+
+@Entity()
 export class Tweet {
-  id!: number;
+    @PrimaryKey()
+    id!: number;
 
-  tweetId!: string;
+    @Property()
+    tweetId!: string;
 
-  text!: string;
+    @Property()
+    text!: string;
 
-  createdAt = new Date();
+    @Property()
+    createdAt = new Date();
 }
